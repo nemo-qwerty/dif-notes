@@ -1,0 +1,29 @@
+db.runCommand({ collMod: "SOME_COOECTION_NAME", validator: {$expr: {$eq:[{$size: "$PropList.PropId"},{$size: {$setUnion: "$PropList.PropId"} }]} } })
+
+db.createCollection("SOME_COOECTION_NAME", {
+   validator: {$expr: {$eq:[{$size: "$PropList.PropId"},{$size: {$setUnion: "$PropList.PropId"} }]} }}) 
+   
+var command = new BsonDocument
+{
+    {"collMod", "patient_tracks"},
+    {
+        "validator", new BsonDocument
+        {
+            {
+                "$expr",
+                new BsonDocument
+                {
+
+                    {"$eq", new BsonArray
+                        {
+                            new BsonDocument {{"$size", "$PropList.PropId"}},
+                            new BsonDocument {{ "$size", new BsonDocument {{ "$setUnion", "$PropList.PropId"}}} },
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+
+var result = _writeDataContext.Database.RunCommand<BsonDocument>(command);
