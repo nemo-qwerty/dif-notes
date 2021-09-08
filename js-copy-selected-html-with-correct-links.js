@@ -9,6 +9,8 @@
 		 div.appendChild(selectionContents);
      
      clipboardData.setData("text/plain",div.innerHTML);
+	 
+     div.remove();
 
      event.preventDefault();
      
