@@ -8,7 +8,7 @@
      var div = document.createElement("div");
 		 div.appendChild(selectionContents);
      
-     clipboardData.setData("text/plain",div.innerHTML);
+     clipboardData.setData("text/html",div.innerHTML);
 	 
      div.remove();
 
