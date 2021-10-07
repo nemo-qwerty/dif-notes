@@ -1,1 +1,6 @@
-git format-patch -1 <sha>
+1. git format-patch -1 <sha>
+
+2. git pull error :error: remote ref is at but expected
+Fix: 
+git update-ref -d resolved my instance of this error, e.g.
+git update-ref -d refs/remotes/origin/user
